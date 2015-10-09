@@ -1,0 +1,7 @@
+.*
+/Release
+/Debug
+/misc
+
+!.gitignore
+!.gitattributes
