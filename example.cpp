@@ -19,7 +19,7 @@ int main( int argc, char** argv )
         "Red", "RedOrange", "Orange", "OrangeYellow", "Yellow",
         "YellowGreen", "Green", "GreenCyan", "Cyan", "CyanBlue",
         "Blue", "BlueMagenta", "Magenta", "MagentaPink", "Pink",
-        "PinkRed", "Brown", "RandomHue", "BlackAndWhite"
+        "PinkRed", "RandomHue", "BlackAndWhite", "Brown"
     };
 
     std::fstream file("example.html", std::fstream::out | std::fstream::trunc);
@@ -47,7 +47,7 @@ int main( int argc, char** argv )
     file << "<!DOCTYPE html><html><body>";
     file << "<table style='width:750px; margin:auto;'>";
 
-    for (int c = RandomColor::Red; c <= RandomColor::BlackAndWhite; ++ c) {
+    for (int c = RandomColor::Red; c <= RandomColor::Brown; ++ c) {
         file << "<tr><th colspan='2' style='text-align:center;'>" << colorNames[c] << "</th></tr>";
         addRow((RandomColor::Color)c, RandomColor::Light);
         addRow((RandomColor::Color)c, RandomColor::Normal);

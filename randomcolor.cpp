@@ -16,7 +16,9 @@
  * - http://www.workwithcolor.com/color-names-01.htm
  * - https://en.wikipedia.org/wiki/Lists_of_colors
  *
- * \note Colors must go in the same order as in Color enum
+ * \note Colors must go in the same order as in Color enum. All colors after
+ * RandomHue are special - they are not considered when the generator is
+ * looking for the concrete hue value in the map.
  *
  * \note generate(RandomHue) does not use RandomHue saturation/brightness,
  * it is looking for more suitable parameters for the generated hue.
@@ -40,9 +42,10 @@ const std::vector<RandomColor::ColorInfo> RandomColor::colorMap =
     { MagentaPink,    {316, 330},  {{20, 100}, {30, 95}, {40, 92}, {50, 87}, {60, 84}, {80, 70}, {90, 65}, {100, 65}} },
     { Pink,           {331, 340},  {{20, 100}, {30, 95}, {40, 92}, {50, 87}, {60, 84}, {80, 80}, {90, 75}, {100, 73}} },
     { PinkRed,        {341, 354},  {{20, 100}, {30, 95}, {40, 90}, {50, 85}, {60, 80}, {70, 70}, {80, 60}, {90, 58}, {100, 55}} },
-    { Brown,          {15, 30},    {{20, 90, 95}, {30, 80, 90}, {40, 60, 90}, {50, 50, 90}, {60, 50, 90}, {70, 50, 90}, {80, 45, 85}, {90, 45, 85}, {100, 40, 85}} },
+
     { RandomHue,      {0, 359},    {{20, 100}, {100, 50}} },
-    { BlackAndWhite,  {0, 359},    {{0, 0, 100}} }
+    { BlackAndWhite,  {0, 359},    {{0, 0, 100}} },
+    { Brown,          {15, 30},    {{20, 90, 95}, {30, 80, 90}, {40, 60, 90}, {50, 50, 90}, {60, 50, 90}, {70, 50, 90}, {80, 45, 85}, {90, 45, 85}, {100, 40, 85}} }
 };
 
 using ColorList = RandomColor::ColorList;
@@ -204,7 +207,7 @@ const RandomColor::ColorInfo& RandomColor::getColorInfo( int h ) const
     for (const ColorInfo& info : colorMap) {
         if ((info.hRange[0] <= h && h <= info.hRange[1]) ||
             (info.hRange[0] <= 0 && h >= 360 + info.hRange[0])) {
-            if (info.hRange.size() < found->hRange.size()) {
+            if (info.hRange.size() < found->hRange.size() && info.color <= RandomHue) {
                 found = &info;
             }
         }

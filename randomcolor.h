@@ -69,9 +69,9 @@ public:
         MagentaPink,
         Pink,
         PinkRed,
-        Brown,
         RandomHue,
-        BlackAndWhite
+        BlackAndWhite,
+        Brown
     };
 
     enum Luminosity
