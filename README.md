@@ -9,6 +9,8 @@ map to produce colors.
 The code was compiled with mingw 5.1.0. It requires support of C++11,
 particularly initializer lists, mutexes and lambdas.
 
+![example](/example.png)
+
 
 Differences from the original project
 -------------------------------------

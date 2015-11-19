@@ -30,11 +30,14 @@ int main( int argc, char** argv )
 
     auto addRow = [&]( RandomColor::Color color, RandomColor::Luminosity luminosity )
     {
-        // Uncomment this to reset the seed for each row
-        //randomColor.setSeed(111);
+        // This resets the random generator for each row, so that rows will
+        // contain identically distributed colors. To generate random rows,
+        // it should be commented out.
+        randomColor.setSeed(123); // This value is just for test (not even a prime)
+
         file << "<tr>";
-        file << "<td style='width:100px; text-align:right;'>" << luminosityNames[int(luminosity)] << "</td>";
-        file << "<td>";
+        file << "<td style='width:100px; text-align:right;'>" << luminosityNames[int(luminosity)] << "&nbsp&nbsp</td>";
+        file << "<td style='line-height:0px;'>";
         for (int i = 0; i < 10; ++ i) {
             file << "<div style='width:50px; height:50px; margin:2px; display:inline-block; background-color:#"
                  << std::hex << std::setw(6) << std::setfill('0')
